@@ -1,0 +1,7 @@
+FROM node:8
+RUN git clone https://github.com/restroid/ipl-betting.git
+RUN cd ipl-betting && npm install
+RUN cd ipl-betting && npm run-script build
+EXPOSE 8081
+WORKDIR /ipl-betting
+CMD ["npm" ,"run-script","start:prod"]

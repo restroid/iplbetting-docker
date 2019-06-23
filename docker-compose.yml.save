@@ -1,0 +1,49 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+  iplbetting_nestjs:
+    container_name: nestjsapp
+    build: ./nestjssetup
+    ports:
+      - '8081:8081'
+    depends_on:
+      - mysql
+    networks:
+      - mylocalnetwork
+    expose:
+      - 8081
+    environment:
+      - VIRTUAL_HOST:ipl.restroid.in
+    restart: always
+  mysql:
+    container_name: mysql1
+    image: mysql/mysql-server
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./db-data/:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=tiger
+      - MYSQL_DATABASE=iplbetting
+      - MYSQL_USER=scott
+      - MYSQL_PASSWORD=tiger
+    networks:
+      - mylocalnetwork
+  phpmyadmin:
+    container_name: phpmyadmin1
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8082:80'
+    networks:
+      - mylocalnetwork
+    environment:
+      - PMA_HOST=mysql1
+    depends_on:
+      - mysql
+    restart: always
+
+networks:
+  mylocalnetwork:
