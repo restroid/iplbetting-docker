@@ -17,6 +17,8 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     network_mode: 'host'
+    depends_on:
+      - certbot
   iplbetting_nestjs:
     container_name: nestjsapp
     build: ./nestjssetup
