@@ -4,7 +4,7 @@ services:
     container_name: nestjsapp
     build: ./nestjssetup
     ports:
-      - '80:8081'
+      - '8081:8081'
     depends_on:
       - mysql
     networks:
@@ -27,6 +27,7 @@ services:
       - MYSQL_DATABASE=iplbetting
       - MYSQL_USER=scott
       - MYSQL_PASSWORD=tiger
+      - COMPOSE_CONVERT_WINDOWS_PATHS=1
     networks:
       - mylocalnetwork
   phpmyadmin:
