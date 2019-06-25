@@ -8,7 +8,7 @@ services:
     volumes:
       - ./nginxsetup/nginx.conf:/etc/nginx/nginx.conf
     networks:
-      - mylocalnetwork
+      - host
   iplbetting_nestjs:
     container_name: nestjsapp
     build: ./nestjssetup
