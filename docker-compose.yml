@@ -41,7 +41,8 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - ./db-data/:/docker-entrypoint-initdb.d
+#     - ./db-data/:/docker-entrypoint-initdb.d
+      - ./db-data/mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=tiger
       - MYSQL_DATABASE=iplbetting
